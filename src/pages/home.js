@@ -1,4 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const BuyNowButton = ({ product }) => {
+  const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
+
+  const buy = () => {};
+
+  if (isLoading) return <></>;
+
+  if (isAuthenticated) return <button onClick={buy}>Buy Now</button>;
+
+  return <button onClick={loginWithRedirect}>Log In To Purchase</button>;
+};
 
 const Home = () => {
   const [products, setProducts] = useState();
@@ -31,7 +44,7 @@ const Home = () => {
                     .toFixed(2)}
                 </p>
                 <p className="buynow">
-                  <button>Buy Now</button>
+                  <BuyNowButton product={product} />
                 </p>
               </div>
             );
