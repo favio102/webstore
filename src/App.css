@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+body, html {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background-color: #005c91;
+  padding: 0.5em 1em;
+}
+
+header h1 {
+  flex-grow: 1;
+}
+
+header .menuitem {
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  font-size: 1rem;
+  vertical-align: baseline;
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav ul {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+}
+
+main {
+  padding: 0.5em 1em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1em;
+}
+
+.product {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 1em;
 }
 
-.App-link {
-  color: #61dafb;
+.product h2 {
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.product img {
+  width: 100%;
+}
+
+.product .sku {
+  text-align: right;
+  font-style: italic;
+  font-size: .8rem;
+}
+
+.product .description {
+  flex-grow: 1;
+}
+
+.product .price {
+  text-align: right;
+  font-weight: bold;
+}
+
+.product button {
+  width: 100%;
+  border: 1px solid #00446b;
+  color: #fff;
+  background-color: #005c91;
+  border-radius: 5px;
+  padding: 0.5em 1em;
 }
