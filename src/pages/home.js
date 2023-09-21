@@ -48,8 +48,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
-      <p>Welcome to my web store!</p>
+      <p>The best online experience shopping with TodoBuy</p>
       <div className="products">
         {products &&
           products.map((product) => {
