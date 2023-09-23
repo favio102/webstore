@@ -17,7 +17,8 @@ exports.handler = verifyJwt(async function (event, context) {
   //
   // See Stripe docs: https://stripe.com/docs/api/checkout/sessions/create
   const session = await stripe.checkout.sessions.create({
-    success_url: process.env.REACT_APP_AUTH0_AUDIENCE + "success",
+    // success_url: process.env.REACT_APP_AUTH0_AUDIENCE + "success",
+    success_url: `${process.env.REACT_APP_AUTH0_AUDIENCE}/success`,
     cancel_url: process.env.REACT_APP_AUTH0_AUDIENCE,
     payment_method_types: ["card"],
     customer: stripeCustomerId,
