@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Layout = ({ children }) => {
@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <header>
+      {/* <header>
         <h1>Todo Buy</h1>
         <nav>
           <ul>
@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
             )}
           </ul>
         </nav>
-      </header>
+      </header> */}
 
       <nav className="navbar bg-primary navbar-expand-lg bg-body-tertiary border-bottom border-body" data-bs-theme="dark" id="navbar">
         <div class="container-fluid">
