@@ -17,10 +17,44 @@ exports.handler = verifyJwt(async function (event, context) {
   //
   // See Stripe docs: https://stripe.com/docs/api/checkout/sessions/create
   const session = await stripe.checkout.sessions.create({
-    // success_url: process.env.REACT_APP_AUTH0_AUDIENCE + "success",
-    // cancel_url: process.env.REACT_APP_AUTH0_AUDIENCE,
-    success_url: `https://${process.env.REACT_APP_AUTH0_AUDIENCE}/success`,
-    cancel_url: `https://${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+    success_url: process.env.REACT_APP_AUTH0_AUDIENCE + "success",
+    cancel_url: process.env.REACT_APP_AUTH0_AUDIENCE,
+    payment_method_types: ["card"],
+    customer: stripeCustomerId,
+    line_items: [
+      {
+        price: payload.priceId,
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+  });
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(session),
+  };
+});
+
+
+
+
+
+
+
+exports.handler = verifyJwt(async function (event, context) {
+  // Get Stripe Customer ID from Access Token
+  const stripeCustomerId = context.identityContext.claims[process.env.REACT_APP_AUTH0_AUDIENCE + "/stripe_customer_id"];
+
+  // Decode the payload
+  const payload = JSON.parse(event.body);
+
+  // Create a new Stripe Checkout Session
+  //
+  // See Stripe docs: https://stripe.com/docs/api/checkout/sessions/create
+  const session = await stripe.checkout.sessions.create({
+    success_url: `https://${process.env.REACT_APP_AUTH0_AUDIENCE}/success`, // Full URL with https://
+    cancel_url: `https://${process.env.REACT_APP_AUTH0_AUDIENCE}`, // Full URL with https://
     payment_method_types: ["card"],
     customer: stripeCustomerId,
     line_items: [
